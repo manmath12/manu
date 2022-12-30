@@ -1,0 +1,78 @@
+#include<iostream>
+#include<string.h>
+#include<iomanip>
+
+using namespace std;
+
+class studentdatabase
+{
+    int rollno;
+    char name[20];
+    char branch[30];
+
+    public:
+
+    static int stdno;
+    static void count()
+    {
+        cout<<"\nno of object created"<<stdno;
+    }
+
+    void fin()
+    {
+        cout<<"\ninline function";
+    }
+
+    studentdatabase()
+    {
+        rollno=8;
+        strcpy(name,"manmath");
+        strcpy(branch,"computer");
+        ++stdno;
+    }
+     public:
+    void getdata()
+    {
+        cout<<"enter rollno,name,branch";
+        cin>>rollno>>name>>branch;
+    }
+    friend void display(studentdatabase s2);
+};
+void display(studentdatabase s2)
+{
+    cout<<s2.rollno<<endl<<s2.name<<endl<<s2.branch;
+}
+int studentdatabase::stdno;
+int main()
+{
+    int n,i;
+    studentdatabase s1,*ptr[5];
+
+    cout<<"default values";
+    display(s1);
+
+//values entered by student
+    s1.getdata();
+    display(s1);
+
+    cout<<"how many object you want to create";
+    cin>>n;
+    for(i=0;i<n;i++)
+    {
+        ptr[i]=new studentdatabase();
+        ptr[i]->getdata();
+    }
+
+    for(i=0; i<n; i++)
+    {
+        display(*ptr[i]);
+    }
+   studentdatabase::count();
+
+   for(i=0;i<n;i++)
+   {
+    delete(ptr[i]);
+   }
+   cout<<"\n all object destroyed";
+    return 0;
+}

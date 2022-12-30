@@ -1,0 +1,142 @@
+#include<iostream>
+#include<stdio.h>
+
+using namespace std;
+
+class publication
+{
+    private:
+    string title;
+    float price;
+    
+    public:
+    void add()
+    {
+        cout<<"\n enter the publiacation information"<<endl;
+        cout<<"\nenter title first and then price"<<endl;
+        cin>>title>>price;
+
+    }
+    public:
+    void display()
+    {
+        cout<<"\ntitle of the book"<<title;
+        cout<<"\nprice of the book"<<price;
+
+    }
+};
+class book: public publication
+{
+    int pagecount;
+    public:
+    void addbook()
+    {
+        try{
+            add();
+            cout<<"enter the page count of the book";
+            cin>>pagecount;
+            if(pagecount<=0)
+            {
+                throw pagecount;
+            }
+        }
+        catch(...)
+        {
+            cout<<"in valid pagecount";
+            pagecount=0;
+        }
+        }
+
+        void displaybook()
+        {
+            display();
+            cout<<"pagecount="<<pagecount;
+            cout<<"\n.............................\n";
+        }
+    };
+
+    class tape:public publication
+    {
+        float playtime;
+        public:
+        void addtape()
+        {
+            try
+            {
+                add();
+                cout<<"enter the play duration of the tape";
+                cin>>playtime;
+                if(playtime<=0)
+                {
+                    throw playtime;
+                }
+            }
+            catch(...)
+            {
+                cout<<"invalid play time";
+                playtime=0;
+            }
+        }
+
+        void displaytape()
+        {
+            display();
+            cout<<"\nplay time:"<<playtime;
+            cout<<"\n...............................................\n";
+        }
+    };
+int main()
+{
+   book b1[10];
+   tape t1[10];
+
+   int ch, bcount=0, tcount=0;
+   do
+    {
+
+    cout<<"\n..........................PUBLICATION DATABASE SYSTEM.........";
+    cout<<"\n.....................MENU.............";
+    cout<<"\n 1.Add information to books";
+    cout<<"\n 2.Add information to tops";
+    cout<<"\n 3.display book information";
+    cout<<"\n 4.display tapes information";
+    cout<<"\n 5.Exit";
+
+    cout<<"Enter your choice";
+    cin>>ch;
+
+    switch(ch)
+    {
+        case 1:
+                b1[bcount].addbook();
+                bcount++;
+                break;
+        case 2:
+                t1[tcount].addtape();
+                tcount++;
+                break;
+        case 3: 
+                 cout<<"\n BOOK PUBLICATION DATABASE SYSTEM";
+                 for(int j=0;j<bcount;j++)
+                 {
+                    b1[j].displaybook();
+                 }
+                 break;
+        case 4:   
+                 cout<<"\n TAPE PUBLICATION DATABASE SYSTEM";
+                 for(int i=0;i<=tcount;i++)  
+                 {
+                    t1[i].displaytape();
+
+                 }   
+                 break;
+
+          
+    }
+}while(ch!=5);
+{
+    cout<<"invalid choice";
+}
+   
+    return 0;
+}

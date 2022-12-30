@@ -1,0 +1,39 @@
+#include<iostream>
+#include<map>
+#include<utility>
+#include<string.h>
+
+using namespace std;
+
+int main()
+{
+    typedef map<string,int>mapType;
+    mapType populationMap;
+
+    populationMap.insert(make_pair("maharashtra",200));
+    populationMap.insert(make_pair("karnatka",300));
+    populationMap.insert(make_pair("telangana",400));
+    populationMap.insert(make_pair("odisa",800));
+    populationMap.insert(make_pair("punjab",700));
+
+    mapType::iterator itr=populationMap.end();
+    
+    cout<<"total population size of the map"<<populationMap.size()<<endl;
+    cout<<"states with population";
+    for(itr=populationMap.begin();itr!=populationMap.end();++itr)
+    {
+        cout<<endl<<itr->first<<endl<<itr->second;
+    }
+
+    string state;
+    cout<<"enter state which you want to find population";
+    cin>>state;
+    
+    itr=populationMap.find(state);
+    cout<<state<<"population:"<<itr->second;
+    
+
+
+
+    return 0;
+}

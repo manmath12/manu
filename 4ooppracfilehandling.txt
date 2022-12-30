@@ -1,0 +1,67 @@
+#include<iostream>
+#include<fstream>
+
+using namespace std;
+
+class employee
+{
+    public:
+    string name;
+    int id;
+    double salary;
+
+    public:
+
+    void accept()
+    {
+        cout<<"\n enter name";
+        cin>>name;
+
+        cout<<"\n enter id";
+        cin>>id;
+
+        cout<<"\n enter salary";
+        cin>>salary;
+    }
+
+    void display()
+    {
+        cout<<"\n name="<<name;
+        cout<<"\n id="<<id;
+        cout<<"\n salary="<<salary;
+
+    }
+};
+
+int main()
+{
+    employee e1[5];
+    fstream f;
+    int i,n;
+
+    f.open("demo.txt",ios::out);
+    cout<<"enter employee you want to create";
+    cin>>n;
+
+    for(i=0;i<n;i++)
+    {
+        cout<<"enter the information of employee";
+        e1[i].accept();
+        f.write((char*)&e1[i],sizeof e1[i]);
+    }
+    f.close();
+
+    f.open("demo.txt",ios::in);
+    cout<<"\n";
+
+    cout<<"information of employee as follows";
+    for(i=0;i<n;i++)
+    {
+        f.write((char*)&e1[i],sizeof e1[i]);
+        e1[i].display();
+
+
+    }
+    f.close();
+    return 0;
+}
