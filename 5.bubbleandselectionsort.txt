@@ -1,0 +1,26 @@
+Percentage=[]
+N=int(input("Enter the No. Of Percentage To Be Entered : "))
+for i in range(N):
+    P=float(input("Enter the Percentage : "))
+    Percentage.append(P)
+print("\nList Of Percentage OF All The Students : ",Percentage)
+
+def Selectionsort(A):
+    for i in range(len(A)):        
+        min_idx = i
+        for j in range(i+1, len(A)):
+            if A[min_idx] > A[j]:
+                min_idx = j
+        A[i], A[min_idx] = A[min_idx], A[i]
+    print("\nSorted List By Selection Sort Is :",A)
+Selectionsort(Percentage)
+
+def BubbleSort(A):
+    N = len(A)
+    for i in range(N):
+        for j in range(0, N-i-1):
+            if A[j] > A[j+1]:
+                A[j], A[j+1] = A[j+1], A[j]
+    print("\nSorted List By Bubble Sort Is :",A)
+    print("\nTop 5 Maximum Percentages Are : ",A[N:N-6:-1])
+BubbleSort(Percentage)

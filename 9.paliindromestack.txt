@@ -1,0 +1,114 @@
+#include<iostream>
+#include<string.h>
+using namespace std;
+
+class stack
+{
+    public:
+    char a[100];
+    int top;
+
+stack()
+{
+    top=-1;
+}
+
+void push(char);
+void reverse();
+void convert(char[]);
+void palindrome();
+};
+
+void stack::push(char c)
+{
+    top++;
+    a[top]=c;
+    a[top+1]='\0';
+    cout<<c<<"  "<<"pushed into the stack";
+    cout<<"\n";
+}
+void stack::reverse()
+{
+    char str[100];
+
+    cout<<"reverse string is";
+    for(int i=top,j=0; i>=0; i--,j++)
+    {
+        cout<<a[i];
+        str[j]=a[i];
+    }
+    cout<<"endl";
+    cout<<"\n";
+}
+
+
+void stack::convert(char str[])
+{
+    int j,k,len=strlen(str);
+
+    for(j=0,k=0;j<len;j++)
+    {
+        if((int)str[j]>=97&&(int)str[j]<=122 || ((int)str[j]>=65&& (int)str[j]<=90))
+        {
+            if((int)str[j]<=90)
+            {
+                str[k]=(char)(int)str[j]+32;
+            }
+            else
+            {
+                str[k]=str[j];
+            }
+            k++;
+        }
+    }
+    str[k]='\0';
+    cout<<"converted string    "<<str<<"\n";
+    cout<<"\n";
+}
+
+void stack::palindrome()
+{
+    char str[100];
+    int i,j;
+
+    for(i=top,j=0;i>=0;i--,j++)
+    {
+        str[j]=a[i];
+    }
+    str[j]='\0';
+
+    if(strcmp(str,a)==0)
+    {
+        cout<<"string is palindrome";
+    }
+    else
+    {
+        cout<<"string is not palindrome";
+    }
+    cout<<"\n";
+}
+
+
+int main()
+{
+    stack s1;
+
+    char str[100];
+    int i=0;
+
+    cout<<"enter string to be reverse and check it is palindrome or not";
+    cin.getline(str,50);
+
+    s1.convert(str);
+
+    while(str[i]!='\0')
+    {
+        s1.push(str[i]);
+        i++;
+    }
+
+    s1.palindrome();
+    s1.reverse();
+
+    return 0;
+}

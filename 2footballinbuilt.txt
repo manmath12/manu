@@ -1,0 +1,55 @@
+a=[1,2,3,4,6,9,10]
+b=[2,4,6,9,12]
+c=[1,2,3,8,7,11,12]
+
+def intersection(l1,l2):
+    res=[]
+    
+    for student in l1:
+        if student in l2:
+            res.append(student)
+    
+    return res
+
+print(intersection(a,b))
+
+def union(l1,l2):
+    res= l2.copy()    
+    
+    for student in l1:
+        if not student in l2:
+            res.append(student)
+    return res         
+
+print (union(a,b))
+
+def diff(l1,l2):
+    res=[]
+    
+    for student in l1:
+        if not student in l2:
+            res.append(student)
+    return res
+print(diff(a,b))
+
+
+def onlyfootball(l1,l2,l3):
+    
+    differcb= diff(l3,l2)
+    res= diff(differcb,l1)
+    
+    return res
+
+print(onlyfootball(a,b,c))
+    
+    
+    
+def nobadminton(l1,l2,l3):
+    
+    onlycricket= diff(l1,l2)
+    onlyfootball= diff(l3,l2)
+    
+    res= union(onlycricket,onlyfootball)
+    return res
+
+print(nobadminton(a,b,c))
